@@ -15,12 +15,14 @@ import Data.Void (Void)
 import Interpreter.Types (Name(..))
 import Text.Megaparsec (Parsec, between, empty, many, notFollowedBy, try)
 import Text.Megaparsec.Char (alphaNumChar, letterChar, space1, string)
-import qualified Text.Megaparsec.Char.Lexer as L (decimal, lexeme, space, symbol)
+import qualified Text.Megaparsec.Char.Lexer as L (decimal, lexeme, space, symbol, skipLineComment)
 
 type Parser = Parsec Void T.Text
 
 sc :: Parser ()
-sc = L.space space1 empty empty
+sc = L.space space1 lineCmnt empty
+  where
+    lineCmnt  = L.skipLineComment $ T.pack "//"
 
 lexeme :: Parser a -> Parser a
 lexeme = L.lexeme sc

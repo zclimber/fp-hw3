@@ -12,8 +12,8 @@ import Control.Monad.Except (MonadError (..))
 import Control.Monad.IO.Class (MonadIO (..))
 import Control.Monad.State (MonadState (..), get, modify)
 import qualified Data.Map.Strict as Map (insert, lookup)
+import Interpreter.Types (InterpreteError (..), Name, State)
 import Text.Read (readMaybe)
-import Interpreter.Types
 
 printVar :: (MonadIO m) => Integer -> m ()
 printVar x = liftIO $ print x

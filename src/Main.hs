@@ -9,8 +9,8 @@ import Parser.For (fileParser)
 import System.Environment (getArgs)
 import Text.Megaparsec (parse)
 import Text.Megaparsec.Error (parseErrorPretty)
-import Interpreter.Types (InterpreteError, State)
-import Control.Monad.Cont
+import Interpreter.Types (InterpreteError(..), State)
+import Control.Monad.Cont (ContT(..), runContT)
 
 type InterpreterStack = StateT State (ExceptT InterpreteError (ContT () IO)) ()
 

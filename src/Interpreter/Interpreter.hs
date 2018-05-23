@@ -19,9 +19,9 @@ import Control.Monad.IO.Class (MonadIO (..))
 import Control.Monad.Reader (runReaderT)
 import Control.Monad.State (MonadState (..))
 import Interpreter.Assignment (assign, newVar)
-import Interpreter.Expr (Expr(..), eval)
+import Interpreter.Expr (Expr (..), eval)
 import Interpreter.IO (printVar, readVar)
-import Interpreter.Types
+import Interpreter.Types (InterpreteError (..), Name, State)
 
 data Line
   = NewVar Name Expr
@@ -41,7 +41,7 @@ data LineFor
   deriving (Show)
 
 lineCount :: LineFor -> Int
-lineCount (For _ _ body) = (+ 1) $ sum $ map lineCount body
+lineCount (For _ _ body) = (+ 2) $ sum $ map lineCount body
 lineCount _              = 1
 
 interpretLineFor :: ( MonadState State m

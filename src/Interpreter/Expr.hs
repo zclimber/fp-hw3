@@ -9,7 +9,7 @@ module Interpreter.Expr
 import Control.Monad.Except (MonadError (..))
 import Control.Monad.Reader (MonadReader (..), asks, local)
 import qualified Data.Map.Strict as Map (insert, lookup)
-import Interpreter.Types
+import Interpreter.Types (InterpreteError (..), Name, State)
 
 data Expr
   = Lit Integer

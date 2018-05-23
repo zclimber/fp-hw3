@@ -9,7 +9,7 @@ module Interpreter.Assignment
 import Control.Monad.Except (MonadError (..))
 import Control.Monad.State (MonadState (..), get, modify)
 import qualified Data.Map.Strict as Map (insert, lookup)
-import Interpreter.Types
+import Interpreter.Types (InterpreteError (..), Name, State)
 
 newVar :: ( MonadState State           m
           , MonadError InterpreteError m

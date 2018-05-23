@@ -24,6 +24,11 @@ instance Show InterpreteError where
   show (UnknownVariable name)        = "Unknown variable " ++ show name
   show (DuplicateVariable name)      = "Variable " ++ show name ++ " is created second time"
   show InvalidInput                  = "Invalid integer input"
-  show (LineInfo line err)           = case err of
-    LineInfo _ inner -> show inner
-    _                -> show err ++ " at line " ++ show line
+  show (LineInfo line err)           = show realErr ++ " at line " ++ show realLine
+    where
+      getLineNumber :: InterpreteError -> (Int, Int, InterpreteError)
+      getLineNumber (LineInfo l e) = (l * x + y, 0, z)
+        where
+          (y, x, z) = getLineNumber e
+      getLineNumber x = (0, 1, x)
+      (realLine, _ , realErr) = getLineNumber $ LineInfo line err
